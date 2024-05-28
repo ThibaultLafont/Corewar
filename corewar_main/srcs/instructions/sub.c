@@ -7,12 +7,6 @@
 
 #include "cmd.h"
 
-/**
- * Subtracts the value of two registers and stores the result in another register.
- *
- * @param global The global state of the Corewar virtual machine.
- * @param prog The current program being executed.
- */
 void e_sub(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

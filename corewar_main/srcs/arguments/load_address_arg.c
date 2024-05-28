@@ -16,17 +16,6 @@ int check_already_use(long nb, corewar_t *global)
         "already used.\n"));
 }
 
-/**
- * Sets the load address argument value.
- *
- * This function validates and sets the load address argument value in the args_infos_t structure.
- * The load address value must be a valid integer and a multiple of MEM_SIZE.
- * It also checks if the load address is already in use.
- *
- * @param value The load address value as a string.
- * @param infos The args_infos_t structure to store the load address value.
- * @return Returns FAILURE if there is an error, otherwise returns SUCCESS.
- */
 int load_adress_arg(char *value, args_infos_t *infos)
 {
     long nb = -1;

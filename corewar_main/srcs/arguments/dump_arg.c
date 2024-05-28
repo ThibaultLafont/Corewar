@@ -10,13 +10,6 @@
 #include "my.h"
 #include "corewar.h"
 
-/**
- * Sets the dump value and updates the number of cycles to dump.
- *
- * @param value The dump value as a string.
- * @param infos The arguments information structure.
- * @return 0 if successful, otherwise an error code.
- */
 int dump_arg(char *value, args_infos_t *infos)
 {
     long cycles = 0;

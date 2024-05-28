@@ -29,6 +29,7 @@ void show_winner(corewar_t *global)
         print_no_winner();
         return;
     }
+    end_ncurses();
     print_winner(global);
     free(global->last_alive);
 }

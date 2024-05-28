@@ -21,35 +21,14 @@ void print_alive(prog_t *prog)
     my_putstr(")is alive.\n");
 }
 
-/**
- * @brief Displays the "alive" message for a program and updates the global state.
- *
- * This function prints the "alive" message for the given program and updates the global state
- * by freeing the previously stored last alive program name and assigning the new program name
- * and ID to the global variables.
- *
- * @param prog A pointer to the program structure.
- * @param global A pointer to the global state structure.
- */
 void show_alive(prog_t *prog, corewar_t *global)
 {
-    print_alive(prog);
     if (global->last_alive != NULL)
         free(global->last_alive);
     global->last_alive = my_strdup(prog->name);
     global->last_live_id = prog->id;
 }
 
-/**
- * Executes the live instruction.
- * This instruction checks if the given argument matches the ID of any program in the global program list.
- * If a match is found, it updates the live_call_cycle of the program and increments the live_calls counter.
- * If the argument matches the ID of the current program, it also calls the show_alive function.
- * Additionally, if the live_calls counter reaches the NBR_LIVE threshold, it resets the counter and decreases the cycles_to_die value.
- *
- * @param global The global state of the Corewar program.
- * @param prog The program executing the live instruction.
- */
 void e_live(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

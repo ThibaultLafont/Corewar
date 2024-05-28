@@ -47,6 +47,8 @@ SRCS	=	./srcs/main.c	\
 		./srcs/parser/file_checker_bis.c	\
 		./srcs/program_managers/place_n_check_progs_bis.c	\
 		./srcs/error_print.c	\
+		./srcs/ncurses/init_ncurses.c	\
+		./srcs/ncurses/display_arena.c	\
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -62,10 +64,13 @@ CFLAGS	=	-I./includes/ -I../lib/includes/ -L../lib/ -lmy
 
 STRICT =	-Wall -Wextra
 
+LDFLAGS	=	-lncurses
+
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(OPTI) $(NATIVE) $(LINK_TIME_OPTI)
+	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(OPTI) $(NATIVE) $(LINK_TIME_OPTI) \
+	$(LDFLAGS)
 	@cp $(NAME) ../
 
 clean:

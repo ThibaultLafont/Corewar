@@ -7,17 +7,6 @@
 
 #include "cmd.h"
 
-/**
- * @brief Executes the lldi instruction.
- *
- * This function calculates the effective address using the first two arguments,
- * loads the value from the calculated address, and stores it in the register
- * specified by the third argument. It also updates the carry flag based on the
- * loaded value.
- *
- * @param global The global state of the Corewar virtual machine.
- * @param prog The program executing the instruction.
- */
 void e_lldi(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

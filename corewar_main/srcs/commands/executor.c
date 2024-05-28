@@ -14,43 +14,26 @@ struct command_info {
     int duration;
 };
 
-/**
- * Executes the specified command for a given program.
- *
- * @param global The global state of the Corewar game.
- * @param prog The program for which the command is being executed.
- * @param cmd_info Information about the command to be executed.
- */
 void call_command(corewar_t *global, prog_t *prog,
     struct command_info *cmd_info)
 {
     if (check_cmd(global, cmd_info->address)) {
-        CMDS[cmd_info->value - 1].exec_function(global, prog);
+        CMDS[cmd_info->value - 1].e_func(global, prog);
         prog->last_execute = global->cycle;
     } else
         add_pc(&prog->pc, 1);
 }
 
-/**
- * Executes a command if the program is ready to execute it.
- *
- * @param global The global state of the Corewar program.
- * @param prog The program that is being executed.
- * @param cmd_info Information about the command to be executed.
- */
 void execute_if_ready(corewar_t *global, prog_t *prog,
     struct command_info *cmd_info)
 {
     if (prog->last_execute == -1 ||
-    ABS(global->cycle - prog->last_execute) >= cmd_info->duration)
+    ABS(global->cycle - prog->last_execute) >= cmd_info->duration) {
         call_command(global, prog, cmd_info);
+        refresh();
+    }
 }
 
-/**
- * Executes the instructions for each program in the global state.
- * 
- * @param global The global state of the corewar program.
- */
 void exec_instruction(corewar_t *global)
 {
     struct command_info cmd_info;

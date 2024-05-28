@@ -9,12 +9,6 @@
 #include "corewar.h"
 #include "my.h"
 
-/*
-** Parses the program name from the given file and stores it in the prog_t structure.
-** The program name is located at the offset 4 in the file.
-** @param file The file to parse.
-** @param prog The prog_t structure to store the program name.
-*/
 static void parse_prog_name(char *file, prog_t *prog)
 {
     for (int i = 4; i < 4 + PROG_NAME_LENGTH; i++)
@@ -22,12 +16,6 @@ static void parse_prog_name(char *file, prog_t *prog)
     prog->name[PROG_NAME_LENGTH] = '\0';
 }
 
-/*
-** Parses the program comment from the given file and stores it in the prog_t structure.
-** The program comment is located at the offset 12 + PROG_NAME_LENGTH in the file.
-** @param file The file to parse.
-** @param prog The prog_t structure to store the program comment.
-*/
 static void parse_prog_comment(char *file, prog_t *prog)
 {
     int offset = 12 + PROG_NAME_LENGTH + COMMENT_LENGTH;
@@ -37,12 +25,6 @@ static void parse_prog_comment(char *file, prog_t *prog)
     prog->comment[COMMENT_LENGTH] = '\0';
 }
 
-/*
-** Parses the program size from the given file and stores it in the prog_t structure.
-** The program size is located at the offset 4 + PROG_NAME_LENGTH in the file.
-** @param file The file to parse.
-** @param prog The prog_t structure to store the program size.
-*/
 static void parse_prog_size(char *file, prog_t *prog)
 {
     prog->size = file[4 + PROG_NAME_LENGTH];
@@ -52,11 +34,6 @@ static void parse_prog_size(char *file, prog_t *prog)
     }
 }
 
-/*
-** Parses the program header from the given file and stores the program name, comment, and size in the prog_t structure.
-** @param file The file to parse.
-** @param prog The prog_t structure to store the program header.
-*/
 void parse_prog_header(char *file, prog_t *prog)
 {
     parse_prog_name(file, prog);

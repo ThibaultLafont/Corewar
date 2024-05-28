@@ -9,20 +9,6 @@
 #include "my.h"
 #include "corewar.h"
 
-/*
- * 1. Opcode of the command
- * 2. Number of cycles that the command takes to execute
- * 3. A boolean indicating whether the instruction uses an encoding byte or t
- * 4. Number of arguments that the command takes
- * 5. Array of argument types that the command can take
- * 6. Pointer to the function that implements the command
- *
- * DIR is defined as a type of argument that a command can take.
- * In the context of the CMDS array, DIR2 and DIR4 are used to represent a
- * direct argument of 2 bytes and 4 bytes respectively.
- * This is in contrast to the rmal DIR in op.h,
- * which doesn't specify the size of the direct argument.
- */
 const instruction_t CMDS[] = {
     {1, 10, 0, 1, {{DIR4}}, &e_live},
     {2, 5, 1, 2, {{DIR4, IND}, {REG}}, &e_ld},

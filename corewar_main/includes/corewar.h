@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include "op.h"
+#include "h_ncurses.h"
 
 #define MAX_USHORT 0xFFFF
 #define ONE_MORE_THAN_MAX_USHORT 0x10000
@@ -34,6 +35,8 @@ typedef struct prog_s {
     char *content;
     int *registers;
     int last_execute;
+    int color;
+    char main_char;
 } prog_t;
 
 typedef struct corewar_s {
@@ -47,6 +50,7 @@ typedef struct corewar_s {
     int last_live_id;
     int live_calls;
     prog_t **progs;
+    char display[MEM_SIZE];
 } corewar_t;
 
 typedef struct args_infos_s {
@@ -358,8 +362,9 @@ int get_type_size(arg_type_t type);
  * @param global The global memory structure.
  * @param address The address to write the value to.
  * @param value The value to write.
+ * @param id The ID of the program writing the value.
  */
-void write_4bytes(corewar_t *global, int address, int value);
+void write_4bytes(corewar_t *global, int address, int value, int id);
 
 /**
  * @brief Writes the new program counter (pc) based
@@ -842,3 +847,7 @@ char *allocate_buffer(size_t size);
  * @return A pointer to the opened file, or NULL if the file cannot be opened.
  */
 FILE *open_file(char *path);
+
+/* NCURSES */
+
+void display_arena(int *arena, corewar_t *global);

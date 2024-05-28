@@ -7,13 +7,6 @@
 
 #include "cmd.h"
 
-/**
- * Performs the bitwise OR operation on two arguments and stores the result in a register.
- * Updates the program counter accordingly.
- *
- * @param global The global state of the Corewar virtual machine.
- * @param prog The program executing the instruction.
- */
 void e_or(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

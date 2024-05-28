@@ -16,13 +16,6 @@ int check_already_used(corewar_t *global, long nb)
         "This program number is already used.\n"));
 }
 
-/**
- * Sets the program number argument value.
- * 
- * @param value The value of the program number argument.
- * @param infos The arguments information structure.
- * @return Returns 0 on success, -1 on error.
- */
 int prog_number_arg(char *value, args_infos_t *infos)
 {
     long nb = -1;

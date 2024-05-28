@@ -8,18 +8,6 @@
 #include "cmd.h"
 #include "corewar.h"
 
-/**
- * @brief Executes the ld instruction.
- *
- * This function loads a value from memory into a register.
- * It takes the first argument as the memory address from which to load the value.
- * The value is then stored in the register specified by the second argument.
- * The carry flag is set to 1 if the loaded value is 0, otherwise it is set to 0.
- * The program counter is updated accordingly.
- *
- * @param global The global state of the corewar program.
- * @param prog The current program being executed.
- */
 void e_ld(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

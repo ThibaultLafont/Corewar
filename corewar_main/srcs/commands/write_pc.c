@@ -8,14 +8,7 @@
 #include "cmd.h"
 #include "corewar.h"
 
-/**
- * Writes a 4-byte value to the memory at the specified address.
- *
- * @param global The global state of the Corewar program.
- * @param address The address in memory where the value should be written.
- * @param value The value to be written.
- */
-void write_4bytes(corewar_t *global, int address, int value)
+void write_4bytes(corewar_t *global, int address, int value, int prog_id)
 {
     int first_value = (value >> 24) & MAX_BYTES;
     int second_value = (value >> 16) & MAX_BYTES;
@@ -26,17 +19,12 @@ void write_4bytes(corewar_t *global, int address, int value)
     global->memory[select_address(address + 1)] = second_value;
     global->memory[select_address(address + 2)] = third_value;
     global->memory[select_address(address + 3)] = fourth_value;
+    global->display[select_address(address)] = prog_id + '0' + 1;
+    global->display[select_address(address + 1)] = prog_id + '0' + 1;
+    global->display[select_address(address + 2)] = prog_id + '0' + 1;
+    global->display[select_address(address + 3)] = prog_id + '0' + 1;
 }
 
-/**
- * Calculates the additional value to be added to the program counter (PC)
- * based on the argument types and whether an opcode (OCp) is present.
- *
- * @param add The initial value to be added to the PC.
- * @param args An array of argument types.
- * @param has_ocp Flag indicating whether an opcode (OCp) is present.
- * @return The updated value to be added to the PC.
- */
 int calculate_add(int add, arg_type_t args[3], int has_ocp)
 {
     for (int i = 0; i < 3; i++)
@@ -61,14 +49,6 @@ int calculate_add(int add, arg_type_t args[3], int has_ocp)
     return add;
 }
 
-/**
- * Writes the new program counter (PC) value for a program based on the
- * argument types and whether an opcode (OCp) is present.
- *
- * @param prog The program whose PC value needs to be updated.
- * @param args An array of argument types.
- * @param has_ocp Flag indicating whether an opcode (OCp) is present.
- */
 void write_new_pc(prog_t *prog, arg_type_t args[3], int has_ocp)
 {
     int add = 1;

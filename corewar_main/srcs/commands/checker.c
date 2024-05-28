@@ -7,13 +7,7 @@
 
 #include <stdio.h>
 #include "cmd.h"
-/**
- * Checks if the given argument matches any of the valid argument types.
- *
- * @param arg - The argument to check.
- * @param types - The valid argument types.
- * @return 1 if the argument matches any of the valid types, 0 otherwise.
- */
+
 static int arg_matches_types(int arg, valid_args_t types)
 {
     return types.first_arg == arg ||
@@ -21,15 +15,6 @@ static int arg_matches_types(int arg, valid_args_t types)
     types.third_arg == arg;
 }
 
-/**
- * Verifies if the given command has valid arguments.
- *
- * @param cmd - The command to verify.
- * @param first_arg - The first argument of the command.
- * @param second_arg - The second argument of the command.
- * @param third_arg - The third argument of the command.
- * @return 1 if the command has valid arguments, 0 otherwise.
- */
 int verify_args(int cmd, int first_arg, int second_arg, int third_arg)
 {
     int args[3] = {first_arg, second_arg, third_arg};
@@ -42,13 +27,6 @@ int verify_args(int cmd, int first_arg, int second_arg, int third_arg)
     return 1;
 }
 
-/**
- * Checks if the opcode of the command at the given address is valid.
- *
- * @param global - The global structure.
- * @param address - The address of the command.
- * @return 1 if the opcode is valid, 0 otherwise.
- */
 int check_op_code(corewar_t *global, int address)
 {
     int cmd = global->memory[select_address(address)] - 1;
@@ -66,15 +44,6 @@ int check_op_code(corewar_t *global, int address)
     return 1;
 }
 
-/**
- * Gets the size of the argument at the given address and position.
- *
- * @param global - The global structure.
- * @param address - The address of the command.
- * @param cmd - The command.
- * @param arg - The argument position.
- * @return The size of the argument.
- */
 int get_parcour_value(corewar_t *global, int address, int cmd, int arg)
 {
     if (!CMDS[cmd].has_op_code ||
@@ -84,13 +53,6 @@ int get_parcour_value(corewar_t *global, int address, int cmd, int arg)
     return (get_type_size(get_argument_type(global, address, arg)));
 }
 
-/**
- * Checks if the registers used in the command at the given address are valid.
- *
- * @param global - The global structure.
- * @param address - The address of the command.
- * @return 1 if the registers are valid, 0 otherwise.
- */
 int check_registers(corewar_t *global, int address)
 {
     int cmd = global->memory[select_address(address)] - 1;
@@ -108,13 +70,6 @@ int check_registers(corewar_t *global, int address)
     return 1;
 }
 
-/**
- * Checks if the command at the given address is valid.
- *
- * @param global - The global structure.
- * @param address - The address of the command.
- * @return 1 if the command is valid, 0 otherwise.
- */
 int check_cmd(corewar_t *global, int address)
 {
     int cmd = global->memory[select_address(address)];

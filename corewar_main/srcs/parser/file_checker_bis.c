@@ -15,13 +15,6 @@
 #include <stdint.h>
 #include "corewar.h"
 
-/**
- * @brief
- * Checks the magic number of the file buffer.
- *
- * @param buffer The buffer containing the file data.
- * @return 0 if the magic number is correct, otherwise an error code.
- */
 int check_file_signature(char *buffer)
 {
     uint32_t magic = (unsigned char)buffer[0] << 24 |
@@ -34,14 +27,6 @@ int check_file_signature(char *buffer)
     return 0;
 }
 
-/**
- * @brief
- * Verifies the file at the given path and stores its contents in the main buffer.
- *
- * @param path The path to the file.
- * @param main_buffer A pointer to the main buffer where the file contents will be stored.
- * @return 0 if the file is successfully verified, otherwise an error code.
- */
 int verify_file(char *path, char **main_buffer)
 {
     FILE *file = open_file(path);

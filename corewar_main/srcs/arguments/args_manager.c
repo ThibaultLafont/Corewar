@@ -56,20 +56,6 @@ int manage_file(char *path, args_infos_t *infos, corewar_t *global)
     return 0;
 }
 
-/**
- * @brief Manages all the arguments passed to the program.
- * 
- * This function iterates through the command line arguments and handles each argument accordingly.
- * It checks if the usage flag is present and returns 1 if it is, indicating that the program should exit.
- * For each argument starting with '-', it calls the `manage_flag` function to handle the flag.
- * For each argument that is not a flag, it calls the `manage_file` function to handle the file.
- * If any of the flag or file management functions return a failure status, this function returns FAILURE.
- * After processing all the arguments, it checks if the `dump` flag is set and frees the memory allocated for it.
- * Finally, it checks if there are at least 2 champions specified and returns an error if not.
- * 
- * @param global A pointer to the `corewar_t` structure containing global variables.
- * @return 0 if all arguments are successfully managed, FAILURE otherwise.
- */
 int manage_all_args(corewar_t *global)
 {
     args_infos_t infos = {global, NULL, NULL, NULL};

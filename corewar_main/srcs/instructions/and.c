@@ -7,28 +7,12 @@
 
 #include "cmd.h"
 
-/**
-** Retrieves the value of the first argument for the 'and' instruction.
-** @param global The global structure containing the program and memory information.
-** @param prog The program structure containing the program's registers and other data.
-** @param address The current address of the instruction.
-** @param args The array of argument types.
-** @return The value of the first argument.
-*/
 int get_first_arg_and(corewar_t *global, prog_t *prog,
     int address, arg_type_t *args)
 {
     return get_arg_value_mod(global, args[0], address + 2, prog);
 }
 
-/**
-** Retrieves the value of the register for the 'and' instruction.
-** @param global The global structure containing the program and memory information.
-** @param address The current address of the instruction.
-** @param first_size The size of the first argument.
-** @param second_size The size of the second argument.
-** @return The value of the register.
-*/
 int get_reg_and(corewar_t *global, int address,
     int first_size, int second_size)
 {
@@ -36,25 +20,12 @@ int get_reg_and(corewar_t *global, int address,
     first_size + second_size)];
 }
 
-/**
- * @brief
-** Updates the program's register and carry flag with the given result.
-** @param prog The program structure containing the program's registers and other data.
-** @param reg The register to update.
-** @param result The result of the 'and' operation.
-*/
 void update(prog_t *prog, int reg, int result)
 {
     prog->registers[reg - 1] = result;
     prog->carry = (result == 0) ? 1 : 0;
 }
 
-/**
- * @brief
-** Executes the 'and' instruction.
-** @param global The global structure containing the program and memory information.
-** @param prog The program structure containing the program's registers and other data.
-*/
 void e_and(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

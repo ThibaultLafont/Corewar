@@ -26,7 +26,7 @@ typedef struct instruction_s {
     int has_op_code;
     int args_nbr;
     valid_args_t args_types[3];
-    void (*exec_function)(corewar_t *, prog_t *);
+    void (*e_func)(corewar_t *, prog_t *);
 } instruction_t;
 
 void e_and(corewar_t *global, prog_t *prog);

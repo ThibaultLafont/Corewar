@@ -15,12 +15,6 @@
 #include <stdint.h>
 #include "corewar.h"
 
-/**
- * Get the size of a file.
- *
- * @param file_path The path to the file.
- * @return The size of the file, or an error code if an error occurs.
- */
 int get_file_size(char *file_path)
 {
     struct stat st;
@@ -34,12 +28,6 @@ int get_file_size(char *file_path)
     return (int)st.st_size;
 }
 
-/**
- * Open a file.
- *
- * @param path The path to the file.
- * @return A pointer to the opened file, or NULL if an error occurs.
- */
 FILE *open_file(char *path)
 {
     FILE *file = fopen(path, "r");
@@ -51,12 +39,6 @@ FILE *open_file(char *path)
     return file;
 }
 
-/**
- * Allocate a buffer of a given size.
- *
- * @param size The size of the buffer to allocate.
- * @return A pointer to the allocated buffer, or NULL if an error occurs.
- */
 char *allocate_buffer(size_t size)
 {
     char *buffer = malloc(sizeof(char) * (size + 1));
@@ -68,14 +50,6 @@ char *allocate_buffer(size_t size)
     return buffer;
 }
 
-/**
- * Read the contents of a file into a buffer.
- *
- * @param file The file to read from.
- * @param buffer The buffer to store the file contents.
- * @param size The size of the buffer.
- * @return 0 if successful, or an error code if an error occurs.
- */
 int read_file(FILE *file, char *buffer, size_t size)
 {
     if (fread(buffer, sizeof(char), size, file) != size)

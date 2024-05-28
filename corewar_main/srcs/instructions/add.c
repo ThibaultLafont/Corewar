@@ -7,13 +7,6 @@
 
 #include "cmd.h"
 
-/**
- * Performs the addition operation on two values and stores the result in a register.
- * Updates the program counter and carry flag accordingly.
- *
- * @param global The global state of the Corewar virtual machine.
- * @param prog The program executing the add instruction.
- */
 void e_add(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

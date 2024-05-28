@@ -8,14 +8,6 @@
 #include "cmd.h"
 #include "corewar.h"
 
-/**
- * Retrieves the argument type for a given command and argument index.
- *
- * @param global The global state of the corewar.
- * @param cmd_address The address of the command in memory.
- * @param arg The index of the argument.
- * @return The argument type.
- */
 arg_type_t get_argument_type(corewar_t *global, int cmd_address, int arg)
 {
     int cmd = global->memory[select_address(cmd_address)] - 1;
@@ -39,13 +31,6 @@ arg_type_t get_argument_type(corewar_t *global, int cmd_address, int arg)
     return result;
 }
 
-/**
- * Retrieves the actual 4-byte value from the memory at the given address.
- *
- * @param global The global state of the corewar program.
- * @param address The memory address to retrieve the value from.
- * @return The actual 4-byte value from the memory.
- */
 long get_actual_4_bytes(corewar_t *global, int address)
 {
     int value = global->memory[select_address(address)];
@@ -55,13 +40,6 @@ long get_actual_4_bytes(corewar_t *global, int address)
     return value;
 }
 
-/**
- * Retrieves the value of a 2-byte memory address in the global memory array.
- *
- * @param global The corewar_t structure representing the global state of the program.
- * @param address The memory address to retrieve the value from.
- * @return The value stored at the specified memory address.
- */
 int get_actual_2_bytes(corewar_t *global, int address)
 {
     int value = global->memory[select_address(address)] & MAX_BYTES;
@@ -71,15 +49,6 @@ int get_actual_2_bytes(corewar_t *global, int address)
     return value;
 }
 
-/**
- * Retrieves the value of an argument based on its type and address.
- *
- * @param global The global state of the corewar program.
- * @param type The type of the argument (REG, IND, DIR2, or default).
- * @param address The address of the argument in memory.
- * @param prog The program structure containing registers and program counter.
- * @return The value of the argument.
- */
 long get_arg_value(corewar_t *global, arg_type_t type,
     int address, prog_t *prog)
 {
@@ -98,15 +67,6 @@ long get_arg_value(corewar_t *global, arg_type_t type,
     }
 }
 
-/**
- * Retrieves the value of an argument based on its type and address.
- *
- * @param global The global state of the corewar program.
- * @param type The type of the argument (REG, IND, DIR2).
- * @param address The address of the argument in memory.
- * @param prog The program that contains the argument.
- * @return The value of the argument.
- */
 long get_arg_value_mod(corewar_t *global, arg_type_t type,
     int address, prog_t *prog)
 {

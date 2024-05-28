@@ -18,8 +18,8 @@
 
 #define LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
 
-#define NAME_CMD_STRING ".name"
-#define COMMENT_CMD_STRING ".comment"
+#define NAME_instruction_sTRING ".name"
+#define COMMENT_instruction_sTRING ".comment"
 
 #define REG_NUMBER 16
 

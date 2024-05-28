@@ -7,17 +7,6 @@
 
 #include "cmd.h"
 
-/**
- * @brief Executes the sti instruction.
- *
- * This function calculates the address to write the value of a register based on the
- * values of two other arguments. It then writes the value of the register to the
- * calculated address. The carry flag of the program is updated based on the value of
- * the register. Finally, the program counter is updated.
- *
- * @param global The global state of the Corewar virtual machine.
- * @param prog The program executing the instruction.
- */
 void e_sti(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);
@@ -30,7 +19,7 @@ void e_sti(corewar_t *global, prog_t *prog)
     get_arg_value_mod(global, args[2], address + 3 + second_size, prog);
     int add = second_arg + third_arg;
 
-    write_4bytes(global, address + add % IDX_MOD, reg);
+    write_4bytes(global, address + add % IDX_MOD, reg, prog->id);
     prog->carry = (reg == 0) ? 1 : 0;
     write_new_pc(prog, args, 1);
 }

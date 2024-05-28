@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "corewar.h"
+#include "my.h"
 
 void free_all(corewar_t *global)
 {
@@ -28,15 +29,17 @@ corewar_t *init_global(corewar_t *global, int argc, char **argv)
     global->last_alive = NULL;
     global->last_live_id = -1;
     global->live_calls = 0;
-    global->progs = NULL;
     global->memory = malloc(sizeof(int) * MEM_SIZE);
     for (int i = 0; i < MEM_SIZE; i++)
         global->memory[i] = 0;
+    for (int i = 0; i < MEM_SIZE; i++)
+        global->display[i] = '5';
     return (global);
 }
 
 int core_program(corewar_t *global)
 {
+    init_ncurses();
     if (place_progs(global) == FAILURE)
         return FAILURE;
     if (main_loop_cycle(global) == FAILURE)

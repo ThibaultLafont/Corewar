@@ -10,8 +10,10 @@
 
 void place_prog_at(corewar_t *global, prog_t *prog, int address)
 {
-    for (int i = 0; i < prog->size; i++)
+    for (int i = 0; i < prog->size; i++) {
         global->memory[select_address(i + address)] = prog->content[i];
+        global->display[select_address(i + address)] = prog->id + '0' + 1;
+    }
     prog->address = address;
 }
 

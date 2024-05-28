@@ -8,17 +8,6 @@
 #include "cmd.h"
 #include "corewar.h"
 
-/**
- * @brief Executes the ldi instruction.
- * 
- * This function calculates the sum of two arguments and uses the result as an address to read a value from memory.
- * The value is then stored in a register specified by another argument.
- * The carry flag is updated based on the value stored.
- * The program counter is updated to the next instruction.
- * 
- * @param global A pointer to the global state of the corewar.
- * @param prog A pointer to the current program.
- */
 void e_ldi(corewar_t *global, prog_t *prog)
 {
     int address = get_new_adress(prog);

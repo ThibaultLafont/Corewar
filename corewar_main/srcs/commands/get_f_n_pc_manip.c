@@ -8,21 +8,11 @@
 #include "cmd.h"
 #include "corewar.h"
 
-/**
- * Calculates the new address based on the current program's address and program counter (pc).
- * @param prog The program structure.
- * @return The new address.
- */
 int get_new_adress(prog_t *prog)
 {
     return select_address(prog->address + prog->pc);
 }
 
-/**
- * Retrieves the duration of a command based on its ID.
- * @param id The ID of the command.
- * @return The duration of the command, or -1 if the ID is invalid.
- */
 int get_command_duration(int id)
 {
     if (id < 1 || id > 16)
@@ -30,21 +20,11 @@ int get_command_duration(int id)
     return CMDS[id - 1].duration;
 }
 
-/**
- * Adds a value to the program counter (pc).
- * @param pc A pointer to the program counter.
- * @param nb The value to add to the program counter.
- */
 void add_pc(int *pc, int nb)
 {
     *pc = (*pc + nb) % ONE_MORE_THAN_MAX_USHORT;
 }
 
-/**
- * Selects a valid address within the memory size.
- * @param address The address to select.
- * @return The selected address.
- */
 int select_address(int address)
 {
     address %= MEM_SIZE;
@@ -53,11 +33,6 @@ int select_address(int address)
     return address;
 }
 
-/**
- * Retrieves the size of a given argument type.
- * @param type The argument type.
- * @return The size of the argument type.
- */
 int get_type_size(arg_type_t type)
 {
     switch (type) {
